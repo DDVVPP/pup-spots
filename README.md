@@ -57,3 +57,5 @@ NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=your_mapbox_token
 # Run the development server
 npm run dev
 ```
+
+Visit http://localhost:3000 to view the app.
