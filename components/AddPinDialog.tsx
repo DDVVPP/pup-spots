@@ -25,7 +25,7 @@ const AddPinDialog = ({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add Pup Spot</DialogTitle>
+          <DialogTitle className="text-red-400">Add Pup Spot</DialogTitle>
           <DialogDescription>
             Add a title, description, and category for this pin.
           </DialogDescription>
@@ -39,8 +39,9 @@ const AddPinDialog = ({
             <Input
               id="name"
               value={title}
+              placeholder="Elysian Park"
               onChange={(e) => setTitle(e.target.value)}
-              className="col-span-3"
+              className="col-span-3 rounded-md placeholder:text-slate-300"
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
@@ -50,19 +51,25 @@ const AddPinDialog = ({
             <Textarea
               id="description"
               value={description}
+              placeholder="Great views, green, coyotes around"
               onChange={(e) => setDescription(e.target.value)}
-              className="col-span-3"
+              className="col-span-3 rounded-md placeholder:text-slate-300"
             />
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit" onClick={handleSubmit}>
+          <Button
+            type="submit"
+            onClick={handleSubmit}
+            className="bg-red-400 hover:bg-red-500  text-white"
+          >
             Add Pin
           </Button>
           <Button
+            type="button"
             variant="secondary"
             onClick={() => setOpen(false)}
-            type="button"
+            className="text-slate-700 border-slate-300 hover:bg-slate-200"
           >
             Cancel
           </Button>
