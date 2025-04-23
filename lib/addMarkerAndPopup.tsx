@@ -12,8 +12,8 @@ export function addMarker(pin: Pin, map: mapboxgl.Map) {
     offset: 25,
   }).setHTML(`
     <div class="text-xs w-[200px] flex flex-col gap-y-1">
-      <p class="font-bold text-slate-800">${pin.title}</p>
-      <p class="text-slate-600 text-wrap">${pin.description}</p>
+      <p class="font-bold text-red-400">${pin.title}</p>
+      <p class="text-slate-600 text-wrap text-[11px]">${pin.description}</p>
     </div>
   `);
 
