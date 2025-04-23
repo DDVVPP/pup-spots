@@ -30,7 +30,7 @@ const MapboxMap = () => {
 
     map.on("click", (e) => {
       setSelectedCoords(e.lngLat);
-      setOpen((open) => !open);
+      setOpen(true);
     });
 
     return () => map.remove();
@@ -40,9 +40,29 @@ const MapboxMap = () => {
     if (!mapRef.current) return;
 
     pins.forEach((pin) => {
-      new mapboxgl.Marker({ color: "#F87171" })
+      const marker = new mapboxgl.Marker({ color: "#F87171" })
         .setLngLat([pin.lng, pin.lat])
         .addTo(mapRef.current!);
+
+      const popup = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false,
+        offset: 25,
+      }).setHTML(`
+      <div class="text-sm w-[200px]">
+        <p class="font-bold text-slate-800">${pin.title}</p>
+        <p class="text-slate-600 text-wrap">${pin.description}</p>
+      </div>
+    `);
+
+      // Show popup on hover
+      marker.getElement().addEventListener("mouseenter", () => {
+        popup.setLngLat([pin.lng, pin.lat]).addTo(mapRef.current!);
+      });
+
+      marker.getElement().addEventListener("mouseleave", () => {
+        popup.remove();
+      });
     });
   }, [pins]);
 
