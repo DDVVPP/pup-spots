@@ -41,7 +41,7 @@ const AddPinDialog = ({
               value={title}
               placeholder="Elysian Park"
               onChange={(e) => setTitle(e.target.value)}
-              className="col-span-3 rounded-md placeholder:text-slate-300"
+              className="col-span-3 rounded-md placeholder:text-slate-300 text-xs text-slate-600"
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
@@ -53,7 +53,7 @@ const AddPinDialog = ({
               value={description}
               placeholder="Great views, green, coyotes around"
               onChange={(e) => setDescription(e.target.value)}
-              className="col-span-3 rounded-md placeholder:text-slate-300"
+              className="col-span-3 rounded-md placeholder:text-slate-300 text-xs text-slate-600"
             />
           </div>
         </div>
