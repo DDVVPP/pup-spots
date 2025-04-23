@@ -3,6 +3,8 @@ import { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
+import MapHeader from "./MapHeader";
+
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN!;
 
 const MapboxMap = () => {
@@ -19,7 +21,12 @@ const MapboxMap = () => {
     return () => map.remove();
   }, []);
 
-  return <div ref={mapContainerRef} className="w-full h-screen" />;
+  return (
+    <section className="absolute inset-0 overflow-hidden ">
+      <div ref={mapContainerRef} className="w-full h-screen" />
+      <MapHeader />
+    </section>
+  );
 };
 
 export default MapboxMap;
