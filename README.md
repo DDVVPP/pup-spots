@@ -25,6 +25,7 @@ A curated map of dog-friendly hangouts across Los Angeles, built with **Next.js*
 - Visual badges ("Unvisited", "Loved", "Not Keen")
 - Visual badges filtering
 - Form validation with Zod + toast notifications
+- Location search
 - Auth and persistent backend (e.g. Supabase, Postgres, Clerk)
 - Onboarding experience for first-time users
 
