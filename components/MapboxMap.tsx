@@ -26,6 +26,7 @@ const MapboxMap = () => {
       center: [-118.2437, 34.0522], // Los Angeles
       zoom: 10,
     });
+    mapRef.current = map;
 
     map.on("click", (e) => {
       setSelectedCoords(e.lngLat);
