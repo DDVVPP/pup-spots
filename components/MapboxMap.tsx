@@ -2,21 +2,17 @@
 import { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 
 import MapHeader from "./MapHeader";
+import AddPinDialog from "./AddPinDialog";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN!;
 
 const MapboxMap = () => {
   const mapContainerRef = useRef(null);
-  const [showModal, setShowModal] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
   // Initialize map instance
   useEffect(() => {
@@ -28,29 +24,31 @@ const MapboxMap = () => {
     });
 
     map.on("click", (e) => {
-      setShowModal((showModal) => !showModal);
+      setOpen((open) => !open);
       console.log("ive been clicked", e.lngLat);
     });
 
     return () => map.remove();
   }, []);
 
+  const handleSubmit = () => {
+    console.log("submitted");
+    setOpen((open) => !open);
+  };
+
   return (
     <section className="absolute inset-0 overflow-hidden ">
       <div ref={mapContainerRef} className="w-full h-screen" />
       <MapHeader />
-
-      <Dialog open={showModal} onOpenChange={setShowModal}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Are you absolutely sure?</DialogTitle>
-            <DialogDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
-            </DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
+      <AddPinDialog
+        open={open}
+        setOpen={setOpen}
+        title={title}
+        setTitle={setTitle}
+        description={description}
+        setDescription={setDescription}
+        handleSubmit={handleSubmit}
+      />
     </section>
   );
 };
