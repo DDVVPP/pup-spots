@@ -49,7 +49,7 @@ const MapboxMap = () => {
         closeOnClick: false,
         offset: 25,
       }).setHTML(`
-      <div class="text-sm w-[200px]">
+      <div class="text-xs w-[200px] flex flex-col gap-y-1">
         <p class="font-bold text-slate-800">${pin.title}</p>
         <p class="text-slate-600 text-wrap">${pin.description}</p>
       </div>
@@ -64,6 +64,22 @@ const MapboxMap = () => {
         popup.remove();
       });
     });
+  }, [pins]);
+
+  //Load pins from localStorage
+  useEffect(() => {
+    const stored = localStorage.getItem("pup-spots");
+    if (stored) {
+      try {
+        setPins(JSON.parse(stored));
+      } catch (err) {
+        console.error("Failed to parse stored pins:", err);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("pup-spots", JSON.stringify(pins));
   }, [pins]);
 
   const handleSubmit = () => {
