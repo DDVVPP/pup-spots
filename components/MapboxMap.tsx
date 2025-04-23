@@ -6,6 +6,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import MapHeader from "./MapHeader";
 import AddPinDialog from "./AddPinDialog";
 import { Coords, Pin } from "@/lib/types";
+import { preloadedPins } from "@/lib/preloadedPins";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN!;
 
@@ -75,6 +76,10 @@ const MapboxMap = () => {
       } catch (err) {
         console.error("Failed to parse stored pins:", err);
       }
+    } else {
+      // Seed pre-loaded pins on first visit
+      localStorage.setItem("pup-spots", JSON.stringify(preloadedPins));
+      setPins(preloadedPins);
     }
   }, []);
 

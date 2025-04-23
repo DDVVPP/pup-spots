@@ -14,7 +14,7 @@ export type Pin = {
   lat: number;
   lng: number;
   title: string;
-  category: string;
+  category?: string;
   description: string;
 };
 
