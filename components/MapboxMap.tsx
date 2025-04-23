@@ -5,14 +5,18 @@ import "mapbox-gl/dist/mapbox-gl.css";
 
 import MapHeader from "./MapHeader";
 import AddPinDialog from "./AddPinDialog";
+import { Coords, Pin } from "@/lib/types";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN!;
 
 const MapboxMap = () => {
   const mapContainerRef = useRef(null);
+  const mapRef = useRef<mapboxgl.Map>(null);
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [pins, setPins] = useState<Pin[]>([]);
+  const [selectedCoords, setSelectedCoords] = useState<Coords | null>(null);
 
   // Initialize map instance
   useEffect(() => {
@@ -24,16 +28,38 @@ const MapboxMap = () => {
     });
 
     map.on("click", (e) => {
+      setSelectedCoords(e.lngLat);
       setOpen((open) => !open);
-      console.log("ive been clicked", e.lngLat);
     });
 
     return () => map.remove();
   }, []);
 
+  useEffect(() => {
+    if (!mapRef.current) return;
+
+    pins.forEach((pin) => {
+      new mapboxgl.Marker({ color: "#F87171" })
+        .setLngLat([pin.lng, pin.lat])
+        .addTo(mapRef.current!);
+    });
+  }, [pins]);
+
   const handleSubmit = () => {
-    console.log("submitted");
-    setOpen((open) => !open);
+    if (!selectedCoords || !title.trim()) return;
+
+    const newPin: Pin = {
+      lat: selectedCoords.lat,
+      lng: selectedCoords.lng,
+      title,
+      description,
+    };
+
+    setPins((prev) => [...prev, newPin]);
+    setTitle("");
+    setDescription("");
+    setSelectedCoords(null);
+    setOpen(false);
   };
 
   return (

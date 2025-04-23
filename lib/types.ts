@@ -9,3 +9,15 @@ export type AddPinModalProps = {
   setDescription: Dispatch<SetStateAction<string>>;
   handleSubmit: () => void;
 };
+
+export type Pin = {
+  lat: number;
+  lng: number;
+  title: string;
+  description: string;
+};
+
+export type Coords = {
+  lat: number;
+  lng: number;
+};
