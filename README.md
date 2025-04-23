@@ -2,7 +2,7 @@
 
 A curated map of dog-friendly hangouts across Los Angeles, built with **Next.js**, **Mapbox GL**, and **ShadCN**.
 
-**[Live Demo](https://your-vercel-url.vercel.app)**
+**[Live Demo](https://pup-spots.vercel.app/)**
 
 ---
 
