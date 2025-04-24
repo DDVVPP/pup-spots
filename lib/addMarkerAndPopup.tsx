@@ -1,8 +1,10 @@
 import mapboxgl from "mapbox-gl";
 import { Pin } from "./types";
+import { createCustomMarkerElement } from "./createCustomMarkerElement";
 
 export function addMarker(pin: Pin, map: mapboxgl.Map) {
-  const marker = new mapboxgl.Marker({ color: "#F87171" })
+  const el = createCustomMarkerElement(pin.category);
+  const marker = new mapboxgl.Marker(el)
     .setLngLat([pin.lng, pin.lat])
     .addTo(map);
 
