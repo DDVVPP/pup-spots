@@ -1,5 +1,5 @@
 import mapboxgl from "mapbox-gl";
-import { Pin } from "./types";
+import { Pin } from "../types";
 import { createCustomMarkerElement } from "./createCustomMarkerElement";
 
 export function addMarker(pin: Pin, map: mapboxgl.Map) {

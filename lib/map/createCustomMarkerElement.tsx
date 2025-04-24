@@ -1,5 +1,5 @@
 import { getIconPathAndColor } from "./getIconPathAndColor";
-import { Category } from "./types";
+import { Category } from "../types";
 
 export const createCustomMarkerElement = (category?: Category): HTMLElement => {
   const el = document.createElement("div");
