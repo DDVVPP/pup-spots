@@ -1,4 +1,4 @@
-import { Pin } from "./types";
+import { Pin } from "../types";
 
 export const preloadedPins: Pin[] = [
   {

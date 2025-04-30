@@ -6,8 +6,8 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import MapHeader from "./MapHeader";
 import AddPinDialog from "./AddPinDialog";
 import { Coords, Pin } from "@/lib/types";
-import { preloadedPins } from "@/lib/constants";
-import { addMarker } from "@/lib/addMarkerAndPopup";
+import { preloadedPins } from "@/lib/data/preloadedPins";
+import { addMarker } from "@/lib/map/addMarkerAndPopup";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN!;
 
